@@ -1,10 +1,12 @@
+import { Media } from '@/collections/Media';
+import { MenuCategories } from '@/collections/Menu-Categories';
+import { Menu } from '@/collections/MenuItems';
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres';
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { buildConfig } from 'payload';
-import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -20,5 +22,6 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
   }),
+  collections: [Menu, MenuCategories, Media],
   sharp,
 });
